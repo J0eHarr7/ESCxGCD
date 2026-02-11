@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: injection_app
+    ports:
+      - "5000:5000"
+    networks:
+      - labnet
+
+  bot:
+    build: ./bot
+    container_name: admin_bot
+    depends_on:
+      - app
+    networks:
+      - labnet
+
+networks:
+  labnet:
